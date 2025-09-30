@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDP Athletics - Premium Athletic Wear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1f2a44;
+            background: #f8fafc;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+        }
+
+        /* Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: black;
+            text-decoration: none;
+        }
+        @media (min-width: 768px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+        }
+        .desktop-nav {
+            display: none;
+            gap: 1rem;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .desktop-nav {
+                display: flex;
+                gap: 1.5rem;
+            }
+        }
+        .desktop-nav a {
+            color: #1f2a44;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+        }
+        .desktop-nav a:hover {
+            color: #14b8a6;
+        }
+        .mobile-nav-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1f2a44;
+        }
+        @media (min-width: 768px) {
+            .mobile-nav-btn {
+                display: none;
+            }
+        }
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80%;
+            height: 100%;
+            background: #ffffff;
+            padding: 2rem;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 999;
+        }
+        .mobile-nav.active {
+            display: block;
+            transform: translateX(0);
+        }
+        .mobile-nav ul {
+            list-style: none;
+        }
+        .mobile-nav li {
+            margin-bottom: 1.5rem;
+        }
+        .mobile-nav a {
+            color: #1f2a44;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        .cart-icon {
+            position: relative;
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #f97316;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #14b8a6;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #0f766e;
+            transform: translateY(-2px);
+        }
+        @media (min-width: 768px) {
+            .btn {
+                padding: 0.85rem 2rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/hero-background.jpg') center/cover no-repeat; /* Add your local hero image here */
+            color: white;
+            text-align: center;
+            padding: 6rem 1rem;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        @media (min-width: 768px) {
+            .hero {
+                padding: 10rem 1rem;
+            }
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+            .hero p {
+                font-size: 1.5rem;
+            }
+        }
+        .search-bar {
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .search-bar input:focus {
+            border-color: #14b8a6;
+            outline: none;
+        }
+        .search-results {
+            display: none;
+            margin-top: 1rem;
+            background: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .search-results.active {
+            display: block;
+        }
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+        }
+        .search-result-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 0.25rem;
+        }
+        .search-result-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .search-result-item p {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 3rem 0;
+            background: #f8fafc;
+        }
+        @media (min-width: 768px) {
+            .features {
+                padding: 4rem 0;
+            }
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+        }
+        .feature-card {
+            background: #ffffff;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        @media (min-width: 768px) {
+            .feature-card {
+                padding: 2rem;
+            }
+        }
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .feature-card h3 {
+                font-size: 1.5rem;
+            }
+        }
+        .feature-card p {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        @media (min-width: 768px) {
+            .feature-card p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Why Choose Section */
+        .why-choose {
+            padding: 3rem 0;
+            background: #ffffff;
+        }
+        @media (min-width: 768px) {
+            .why-choose {
+                padding: 4rem 0;
+            }
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 2rem;
+            }
+        }
+        .stat-card {
+            text-align: center;
+        }
+        .stat-card h4 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #14b8a6;
+            margin-bottom: 0.5rem;
+        }
+        @media (min-width: 768px) {
+            .stat-card h4 {
+                font-size: 2.5rem;
+            }
+        }
+        .stat-card p {
+            font-size: 0.9rem;
+            color: #1f2a44;
+        }
+        @media (min-width: 768px) {
+            .stat-card p {
+                font-size: 1rem;
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 3rem 0;
+            text-align: center;
+            background: #14b8a6;
+            color: white;
+        }
+        @media (min-width: 768px) {
+            .cta-section {
+                padding: 4rem 0;
+            }
+        }
+        .cta-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .cta-section p {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Offer Banner */
+        .offer-banner {
+            background: #f97316;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        @media (min-width: 768px) {
+            .offer-banner {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+        }
+        .offer-banner h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        @media (min-width: 768px) {
+            .offer-banner h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Product Sections */
+        section.product-section {
+            padding: 3rem 0;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            section.product-section {
+                padding: 4rem 0;
+            }
+        }
+        section.product-section.active {
+            display: block;
+        }
+        section.product-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1f2a44;
+        }
+        @media (min-width: 768px) {
+            section.product-section h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        @media (min-width: 768px) {
+            .product-card img {
+                height: 200px;
+            }
+        }
+        .product-card-content {
+            padding: 1rem;
+            text-align: center;
+        }
+        .product-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+        @media (min-width: 768px) {
+            .product-card h3 {
+                font-size: 1.2rem;
+            }
+        }
+        .product-card p {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-bottom: 0.75rem;
+        }
+        @media (min-width: 768px) {
+            .product-card p {
+                font-size: 0.9rem;
+            }
+        }
+        .product-card .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #14b8a6;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .product-card .price {
+                font-size: 1.3rem;
+            }
+        }
+        .badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #f97316;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Modal for Product Details */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: #ffffff;
+            border-radius: 0.5rem;
+            max-width: 90%;
+            width: 400px;
+            padding: 1.5rem;
+            position: relative;
+        }
+        @media (min-width: 768px) {
+            .modal-content {
+                max-width: 500px;
+                padding: 2rem;
+            }
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .modal-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .modal-content h3 {
+                font-size: 1.5rem;
+            }
+        }
+        .modal-content p {
+            font-size: 0.9rem;
+            color: #1f2a44;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .modal-content p {
+                font-size: 1rem;
+            }
+        }
+        .modal-content .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #14b8a6;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .modal-content .price {
+                font-size: 1.5rem;
+            }
+        }
+        .modal-sales {
+            font-size: 1rem;
+            color: #f97316;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .close-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1f2a44;
+        }
+        @media (min-width: 768px) {
+            .close-btn {
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+
+        /* Cart Section */
+        #cart {
+            padding: 3rem 0;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #cart {
+                padding: 4rem 0;
+            }
+        }
+        #cart.active {
+            display: block;
+        }
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        .cart-table th, .cart-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        @media (min-width: 768px) {
+            .cart-table th, .cart-table td {
+                padding: 1rem;
+            }
+        }
+        .cart-table th {
+            font-weight: 600;
+            color: #1f2a44;
+        }
+        .cart-table img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 0.25rem;
+        }
+        @media (min-width: 768px) {
+            .cart-table img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #14b8a6;
+            text-align: right;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .cart-total {
+                font-size: 1.5rem;
+            }
+        }
+        .order-form {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .order-form {
+                max-width: 600px;
+            }
+        }
+        .order-form h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .order-form h3 {
+                font-size: 1.5rem;
+            }
+        }
+        .order-form label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .order-form input, .order-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .order-form input:focus, .order-form textarea:focus {
+            border-color: #14b8a6;
+            outline: none;
+        }
+        .order-confirmation {
+            display: none;
+            text-align: center;
+            padding: 1.5rem;
+            background: #e6fffa;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .order-confirmation {
+                padding: 2rem;
+                margin-top: 2rem;
+            }
+        }
+        .order-confirmation.active {
+            display: block;
+        }
+
+        /* Contact Icon */
+        .contact-icon {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: #14b8a6;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        @media (min-width: 768px) {
+            .contact-icon {
+                bottom: 2rem;
+                right: 2rem;
+                width: 50px;
+                height: 50px;
+            }
+        }
+        .contact-icon:hover {
+            transform: scale(1.1);
+        }
+        .contact-menu {
+            display: none;
+            position: absolute;
+            bottom: 50px;
+            right: 0;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            z-index: 1000;
+        }
+        @media (min-width: 768px) {
+            .contact-menu {
+                bottom: 60px;
+                padding: 1rem;
+            }
+        }
+        .contact-menu.active {
+            display: block;
+        }
+        .contact-menu a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: #1f2a44;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+        @media (min-width: 768px) {
+            .contact-menu a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+        .contact-menu a:hover {
+            background: #f1f5f9;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2a44;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            footer {
+                padding: 3rem 0;
+            }
+        }
+        footer p {
+            margin-bottom: 1rem;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .footer-links {
+                gap: 1.5rem;
+            }
+        }
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+        @media (min-width: 768px) {
+            .footer-links a {
+                font-size: 1rem;
+            }
+        }
+        .footer-links a:hover {
+            color: #14b8a6;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .social-links {
+                gap: 1.5rem;
+            }
+        }
+        .social-links a {
+            color: #d1d5db;
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+        }
+        @media (min-width: 768px) {
+            .social-links a {
+                font-size: 1.5rem;
+            }
+        }
+        .social-links a:hover {
+            color: #14b8a6;
+        }
+
+        /* Animation Video */
+        .animation-video {
+            max-width: 100%;
+            margin: 1.5rem auto;
+        }
+        @media (min-width: 768px) {
+            .animation-video {
+                max-width: 600px;
+                margin: 2rem auto;
+            }
+        }
+        .animation-video video {
+            width: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Best Selling Products */
+        .best-selling {
+            padding: 3rem 0;
+        }
+        @media (min-width: 768px) {
+            .best-selling {
+                padding: 4rem 0;
+            }
+        }
+        .best-selling h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1f2a44;
+        }
+        @media (min-width: 768px) {
+            .best-selling h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* Customer Reviews Section */
+        .reviews-section {
+            padding: 3rem 0;
+            background: #f8fafc;
+        }
+        @media (min-width: 768px) {
+            .reviews-section {
+                padding: 4rem 0;
+            }
+        }
+        .reviews-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1f2a44;
+        }
+        @media (min-width: 768px) {
+            .reviews-section h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+        .slider {
+            max-width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        @media (min-width: 768px) {
+            .slider {
+                max-width: 800px;
+            }
+        }
+        .slider-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .review-card {
+            background: #ffffff;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .review-card {
+                padding: 2rem;
+            }
+        }
+        .review-card .user-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #14b8a6;
+        }
+        @media (min-width: 768px) {
+            .review-card .user-icon {
+                font-size: 3rem;
+            }
+        }
+        .review-card p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .review-card p {
+                font-size: 1rem;
+            }
+        }
+        .review-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        @media (min-width: 768px) {
+            .review-card h4 {
+                font-size: 1.2rem;
+            }
+        }
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .slider-controls button {
+            background: #14b8a6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-size: 0.9rem;
+        }
+        @media (min-width: 768px) {
+            .slider-controls button {
+                font-size: 1rem;
+            }
+        }
+        .slider-controls button:hover {
+            background: #0f766e;
+        }
+
+        /* About Us Section */
+        #about-us {
+            padding: 3rem 0;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #about-us {
+                padding: 4rem 0;
+            }
+        }
+        #about-us.active {
+            display: block;
+        }
+        #about-us h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1f2a44;
+        }
+        @media (min-width: 768px) {
+            #about-us h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+        #about-us p {
+            max-width: 800px;
+            margin: 0 auto 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        @media (min-width: 768px) {
+            #about-us p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 3rem 0;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #contact {
+                padding: 4rem 0;
+            }
+        }
+        #contact.active {
+            display: block;
+        }
+        #contact h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1f2a44;
+        }
+        @media (min-width: 768px) {
+            #contact h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+        .contact-form {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .contact-form {
+                max-width: 600px;
+            }
+        }
+        .contact-form label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #14b8a6;
+            outline: none;
+        }
+        .contact-form button {
+            width: 100%;
+        }
+
+        /* Profile Section */
+        #profile {
+            padding: 3rem 0;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #profile {
+                padding: 4rem 0;
+            }
+        }
+        #profile.active {
+            display: block;
+        }
+        #profile h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1f2a44;
+        }
+        @media (min-width: 768px) {
+            #profile h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+        .profile-info {
+            max-width: 100%;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        @media (min-width: 768px) {
+            .profile-info {
+                max-width: 600px;
+                padding: 2rem;
+            }
+        }
+        .profile-info p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        @media (min-width: 768px) {
+            .profile-info p {
+                font-size: 1rem;
+            }
+        }
+        .profile-info .user-icon {
+            font-size: 3rem;
+            color: #14b8a6;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .profile-info .user-icon {
+                font-size: 4rem;
+            }
+        }
+        .edit-form {
+            display: none;
+        }
+        .edit-form.active {
+            display: block;
+        }
+        .edit-form label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .edit-form input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .edit-form input:focus {
+            border-color: #14b8a6;
+            outline: none;
+        }
+
+        /* Home Content */
+        .home-content {
+            display: block;
+        }
+        .home-content.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+    <header>
+        <div class="container nav-content">
+            <a href="#home" class="logo">RDP Athletics</a>
+            <nav class="desktop-nav">
+                <a href="#home">Home</a>
+                <a href="#men">Men</a>
+                <a href="#women">Women</a>
+                <a href="#unisex-essentials">Unisex Essentials</a>
+                <a href="#about-us">About Us</a>
+                <a href="#contact">Contact</a>
+                <a href="#profile">Profile</a>
+                <a href="#cart" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </nav>
+            <button class="mobile-nav-btn" aria-label="Toggle mobile navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#men">Men</a></li>
+                <li><a href="#women">Women</a></li>
+                <li><a href="#unisex-essentials">Unisex Essentials</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#cart">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section id="home" class="hero active home-content">
+            <div class="container">
+                <h1>Revolutionizing Fitness Fashion</h1>
+                <p>Premium fitness apparel designed for peak performance, ultimate comfort, and unmatched affordability. Where style meets strength.</p>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search products..." aria-label="Search products">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+                <a href="#men" class="btn">Shop Now</a>
+                <div class="animation-video">
+                    <video autoplay loop muted playsinline>
+                        <source src="videos/gym-video.mp4" type="video/mp4"> <!-- Add your local video file here -->
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="best-selling">
+                    <h2>Best Selling Products</h2>
+                    <div class="product-grid">
+                        <div class="product-card" data-id="2" data-name="Dry-Fit T-Shirt" data-price="250" data-description="Stay comfortable with this quick-drying, lightweight T-shirt, perfect for high-intensity training sessions." data-image="images/dry-fit-t-shirt.jpg">
+                            <span class="badge">Best Seller</span>
+                            <img src="images/dry-fit-t-shirt.jpg" alt="Dry-Fit T-Shirt"> <!-- Add your local image here -->
+                            <div class="product-card-content">
+                                <h3>Dry-Fit T-Shirt</h3>
+                                <p>Quick-drying fabric</p>
+                                <div class="price">₹250</div>
+                                <button class="btn add-to-cart" data-id="2" data-name="Dry-Fit T-Shirt" data-price="250" data-image="images/dry-fit-t-shirt.jpg">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card" data-id="11" data-name="Sports Bra" data-price="200" data-description="This sports bra offers high support and comfort for all athletic activities." data-image="images/sports-bra.jpg">
+                            <span class="badge">Best Seller</span>
+                            <img src="images/sports-bra.jpg" alt="Sports Bra"> <!-- Add your local image here -->
+                            <div class="product-card-content">
+                                <h3>Sports Bra</h3>
+                                <p>High support for activities</p>
+                                <div class="price">₹200</div>
+                                <button class="btn add-to-cart" data-id="11" data-name="Sports Bra" data-price="200" data-image="images/sports-bra.jpg">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card" data-id="16" data-name="High-Waist Leggings" data-price="300" data-description="Squat-proof high-waist leggings for ultimate comfort and support." data-image="images/high-waist-leggings.jpg">
+                            <span class="badge">Best Seller</span>
+                            <img src="images/high-waist-leggings.jpg" alt="High-Waist Leggings"> <!-- Add your local image here -->
+                            <div class="product-card-content">
+                                <h3>High-Waist Leggings</h3>
+                                <p>Squat-proof fabric</p>
+                                <div class="price">₹300</div>
+                                <button class="btn add-to-cart" data-id="16" data-name="High-Waist Leggings" data-price="300" data-image="images/high-waist-leggings.jpg">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card" data-id="26" data-name="Gym Bag/Backpack" data-price="450" data-description="Spacious gym bag with multiple compartments for all your gear." data-image="images/gym-bag.jpg">
+                            <span class="badge">Best Seller</span>
+                            <img src="images/gym-bag.jpg" alt="Gym Bag/Backpack"> <!-- Add your local image here -->
+                            <div class="product-card-content">
+                                <h3>Gym Bag/Backpack</h3>
+                                <p>Spacious compartments</p>
+                                <div class="price">₹450</div>
+                                <button class="btn add-to-cart" data-id="26" data-name="Gym Bag/Backpack" data-price="450" data-image="images/gym-bag.jpg">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features home-content">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Enhanced Productivity</h3>
+                        <p>Our moisture-wicking fabrics and ergonomic designs boost your workout efficiency by 30%. Move freely, perform better.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Unbeatable Value</h3>
+                        <p>Premium quality at prices that don't break your budget. Get professional-grade gear without the premium price tag.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Ultimate Comfort</h3>
+                        <p>Breathable materials, seamless construction, and perfect fit ensure you stay comfortable from warm-up to cool-down.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose home-content">
+            <div class="container">
+                <h2>Why Choose RDP ATHLET?</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>40%</h4>
+                        <p>Cost Savings</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>15%</h4>
+                        <p>Better Performance</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>98%</h4>
+                        <p>Customer Satisfaction</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section home-content">
+            <div class="container">
+                <h2>Your Fitness Journey Starts Here</h2>
+                <p>Ready to Elevate Your Workout? Experience the perfect blend of performance, comfort, and affordability.</p>
+                <a href="#men" class="btn" style="background: white; color: #14b8a6;">Shop Now</a>
+            </div>
+        </section>
+
+        <section class="offer-banner home-content">
+            <div class="container">
+                <h3>Get 15% Off Your First Purchase! Use Code: FIRST15</h3>
+            </div>
+        </section>
+
+        <section id="men" class="product-section">
+            <div class="container">
+                <h2>Men's Gym Wear</h2>
+                <div class="product-grid">
+                    <div class="product-card" data-id="1" data-name="Sleeveless Vest" data-price="200" data-description="This lightweight sleeveless vest is designed for maximum mobility during intense workouts. Made with breathable, moisture-wicking fabric to keep you cool and dry." data-image="images/sleeveless-vest.jpg">
+                        <span class="badge">20% Off</span>
+                        <img src="images/sleeveless-vest.jpg" alt="Sleeveless Vest"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Sleeveless Vest</h3>
+                            <p>Lightweight and breathable</p>
+                            <div class="price">₹200</div>
+                            <button class="btn add-to-cart" data-id="1" data-name="Sleeveless Vest" data-price="200" data-image="images/sleeveless-vest.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="2" data-name="Dry-Fit T-Shirt" data-price="250" data-description="Stay comfortable with this quick-drying, lightweight T-shirt, perfect for high-intensity training sessions." data-image="images/dry-fit-t-shirt.jpg">
+                        <img src="images/dry-fit-t-shirt.jpg" alt="Dry-Fit T-Shirt"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Dry-Fit T-Shirt</h3>
+                            <p>Quick-drying fabric</p>
+                            <div class="price">₹250</div>
+                            <button class="btn add-to-cart" data-id="2" data-name="Dry-Fit T-Shirt" data-price="250" data-image="images/dry-fit-t-shirt.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="3" data-name="Compression Shirt" data-price="300" data-description="Enhance your performance with this compression shirt, designed to support muscles and aid recovery." data-image="images/compression-shirt.jpg">
+                        <span class="badge">Limited Offer</span>
+                        <img src="images/compression-shirt.jpg" alt="Compression Shirt"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Compression Shirt</h3>
+                            <p>Muscle support and recovery</p>
+                            <div class="price">₹300</div>
+                            <button class="btn add-to-cart" data-id="3" data-name="Compression Shirt" data-price="300" data-image="images/compression-shirt.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="4" data-name="Tank Top" data-price="220" data-description="This tank top offers a breathable design, perfect for intense workouts and warm weather." data-image="images/tank-top-men.jpg">
+                        <img src="images/tank-top-men.jpg" alt="Tank Top"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Tank Top</h3>
+                            <p>Ideal for high-intensity training</p>
+                            <div class="price">₹220</div>
+                            <button class="btn add-to-cart" data-id="4" data-name="Tank Top" data-price="220" data-image="images/tank-top-men.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="5" data-name="Hooded Gym Tee" data-price="350" data-description="Stay warm and stylish with this hooded gym tee, ideal for outdoor or cooler workouts." data-image="images/hooded-gym-tee.jpg">
+                        <img src="images/hooded-gym-tee.jpg" alt="Hooded Gym Tee"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Hooded Gym Tee</h3>
+                            <p>Stylish for cooler workouts</p>
+                            <div class="price">₹350</div>
+                            <button class="btn add-to-cart" data-id="5" data-name="Hooded Gym Tee" data-price="350" data-image="images/hooded-gym-tee.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="6" data-name="Training Shorts" data-price="280" data-description="These training shorts offer flexibility and durability for any athletic activity." data-image="images/training-shorts.jpg">
+                        <span class="badge">20% Off</span>
+                        <img src="images/training-shorts.jpg" alt="Training Shorts"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Training Shorts</h3>
+                            <p>Flexible and durable</p>
+                            <div class="price">₹280</div>
+                            <button class="btn add-to-cart" data-id="6" data-name="Training Shorts" data-price="280" data-image="images/training-shorts.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="7" data-name="Joggers" data-price="320" data-description="Comfortable joggers with a tapered fit, perfect for both workouts and casual wear." data-image="images/joggers-men.jpg">
+                        <img src="images/joggers-men.jpg" alt="Joggers"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Joggers</h3>
+                            <p>Tapered fit for comfort</p>
+                            <div class="price">₹320</div>
+                            <button class="btn add-to-cart" data-id="7" data-name="Joggers" data-price="320" data-image="images/joggers-men.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="8" data-name="Track Pants" data-price="350" data-description="Lightweight track pants designed for dynamic movement and all-day comfort." data-image="images/track-pants.jpg">
+                        <img src="images/track-pants.jpg" alt="Track Pants"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Track Pants</h3>
+                            <p>Lightweight for movement</p>
+                            <div class="price">₹350</div>
+                            <button class="btn add-to-cart" data-id="8" data-name="Track Pants" data-price="350" data-image="images/track-pants.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="9" data-name="Compression Tights" data-price="400" data-description="These compression tights provide full leg support for enhanced performance and recovery." data-image="images/compression-tights.jpg">
+                        <img src="images/compression-tights.jpg" alt="Compression Tights"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Compression Tights</h3>
+                            <p>Full leg support</p>
+                            <div class="price">₹400</div>
+                            <button class="btn add-to-cart" data-id="9" data-name="Compression Tights" data-price="400" data-image="images/compression-tights.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="10" data-name="2-in-1 Shorts" data-price="300" data-description="2-in-1 shorts with an inner compression layer for support and outer flexibility." data-image="images/2-in-1-shorts.jpg">
+                        <img src="images/2-in-1-shorts.jpg" alt="2-in-1 Shorts"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>2-in-1 Shorts</h3>
+                            <p>Inner compression layer</p>
+                            <div class="price">₹300</div>
+                            <button class="btn add-to-cart" data-id="10" data-name="2-in-1 Shorts" data-price="300" data-image="images/2-in-1-shorts.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="women" class="product-section">
+            <div class="container">
+                <h2>Women's Gym Wear</h2>
+                <div class="product-grid">
+                    <div class="product-card" data-id="11" data-name="Sports Bra" data-price="200" data-description="This sports bra offers high support and comfort for all athletic activities." data-image="images/sports-bra.jpg">
+                        <span class="badge">20% Off</span>
+                        <img src="images/sports-bra.jpg" alt="Sports Bra"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Sports Bra</h3>
+                            <p>High support for activities</p>
+                            <div class="price">₹200</div>
+                            <button class="btn add-to-cart" data-id="11" data-name="Sports Bra" data-price="200" data-image="images/sports-bra.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="12" data-name="Tank Top" data-price="220" data-description="Breathable tank top designed for intense workouts and maximum comfort." data-image="images/tank-top-women.jpg">
+                        <img src="images/tank-top-women.jpg" alt="Tank Top"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Tank Top</h3>
+                            <p>Breathable design</p>
+                            <div class="price">₹220</div>
+                            <button class="btn add-to-cart" data-id="12" data-name="Tank Top" data-price="220" data-image="images/tank-top-women.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="13" data-name="Crop Top" data-price="250" data-description="Stylish crop top with breathable fabric, perfect for gym and casual wear." data-image="images/crop-top.jpg">
+                        <img src="images/crop-top.jpg" alt="Crop Top"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Crop Top</h3>
+                            <p>Stylish and breathable</p>
+                            <div class="price">₹250</div>
+                            <button class="btn add-to-cart" data-id="13" data-name="Crop Top" data-price="250" data-image="images/crop-top.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="14" data-name="Dry-Fit T-Shirt" data-price="280" data-description="Quick-drying T-shirt designed for intense training sessions and comfort." data-image="images/dry-fit-t-shirt-women.jpg">
+                        <img src="images/dry-fit-t-shirt-women.jpg" alt="Dry-Fit T-Shirt"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Dry-Fit T-Shirt</h3>
+                            <p>Quick-drying for sessions</p>
+                            <div class="price">₹280</div>
+                            <button class="btn add-to-cart" data-id="14" data-name="Dry-Fit T-Shirt" data-price="280" data-image="images/dry-fit-t-shirt-women.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="15" data-name="Gym Hoodie/Sweatshirt" data-price="350" data-description="Warm and stylish hoodie, perfect for cooler workouts or casual wear." data-image="images/gym-hoodie-women.jpg">
+                        <span class="badge">Limited Offer</span>
+                        <img src="images/gym-hoodie-women.jpg" alt="Gym Hoodie/Sweatshirt"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Gym Hoodie/Sweatshirt</h3>
+                            <p>Warm and stylish</p>
+                            <div class="price">₹350</div>
+                            <button class="btn add-to-cart" data-id="15" data-name="Gym Hoodie/Sweatshirt" data-price="350" data-image="images/gym-hoodie-women.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="16" data-name="High-Waist Leggings" data-price="300" data-description="Squat-proof high-waist leggings for ultimate comfort and support." data-image="images/high-waist-leggings.jpg">
+                        <img src="images/high-waist-leggings.jpg" alt="High-Waist Leggings"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>High-Waist Leggings</h3>
+                            <p>Squat-proof fabric</p>
+                            <div class="price">₹300</div>
+                            <button class="btn add-to-cart" data-id="16" data-name="High-Waist Leggings" data-price="300" data-image="images/high-waist-leggings.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="17" data-name="Yoga Pants" data-price="280" data-description="Flexible yoga pants designed for stretching and yoga sessions." data-image="images/yoga-pants.jpg">
+                        <img src="images/yoga-pants.jpg" alt="Yoga Pants"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Yoga Pants</h3>
+                            <p>Flexible for yoga</p>
+                            <div class="price">₹280</div>
+                            <button class="btn add-to-cart" data-id="17" data-name="Yoga Pants" data-price="280" data-image="images/yoga-pants.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="18" data-name="Gym Shorts" data-price="250" data-description="Lightweight and breathable gym shorts for active wear." data-image="images/gym-shorts-women.jpg">
+                        <span class="badge">20% Off</span>
+                        <img src="images/gym-shorts-women.jpg" alt="Gym Shorts"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Gym Shorts</h3>
+                            <p>Lightweight and breathable</p>
+                            <div class="price">₹250</div>
+                            <button class="btn add-to-cart" data-id="18" data-name="Gym Shorts" data-price="250" data-image="images/gym-shorts-women.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="19" data-name="Joggers" data-price="320" data-description="Tapered joggers for workouts and casual outings, offering comfort and style." data-image="images/joggers-women.jpg">
+                        <img src="images/joggers-women.jpg" alt="Joggers"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Joggers</h3>
+                            <p>Tapered fit for casual wear</p>
+                            <div class="price">₹320</div>
+                            <button class="btn add-to-cart" data-id="19" data-name="Joggers" data-price="320" data-image="images/joggers-women.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="20" data-name="Skorts" data-price="300" data-description="Stylish skorts with built-in shorts for comfort and versatility." data-image="images/skorts.jpg">
+                        <img src="images/skorts.jpg" alt="Skorts"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Skorts</h3>
+                            <p>Skirt with built-in shorts</p>
+                            <div class="price">₹300</div>
+                            <button class="btn add-to-cart" data-id="20" data-name="Skorts" data-price="300" data-image="images/skorts.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="unisex-essentials" class="product-section">
+            <div class="container">
+                <h2>Unisex Essentials</h2>
+                <div class="product-grid">
+                    <div class="product-card" data-id="21" data-name="Gym Towel" data-price="200" data-description="Highly absorbent and quick-drying gym towel, perfect for workouts." data-image="images/gym-towel.jpg">
+                        <span class="badge">Limited Offer</span>
+                        <img src="images/gym-towel.jpg" alt="Gym Towel"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Gym Towel</h3>
+                            <p>Absorbent and quick-drying</p>
+                            <div class="price">₹200</div>
+                            <button class="btn add-to-cart" data-id="21" data-name="Gym Towel" data-price="200" data-image="images/gym-towel.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="22" data-name="Sweat-Proof Jacket" data-price="450" data-description="Water-resistant and lightweight jacket for outdoor workouts." data-image="images/sweat-proof-jacket.jpg">
+                        <img src="images/sweat-proof-jacket.jpg" alt="Sweat-Proof Jacket"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Sweat-Proof Jacket</h3>
+                            <p>Water-resistant and lightweight</p>
+                            <div class="price">₹450</div>
+                            <button class="btn add-to-cart" data-id="22" data-name="Sweat-Proof Jacket" data-price="450" data-image="images/sweat-proof-jacket.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="23" data-name="Compression Sleeves" data-price="250" data-description="Compression sleeves to improve circulation and reduce fatigue during workouts." data-image="images/compression-sleeves.jpg">
+                        <img src="images/compression-sleeves.jpg" alt="Compression Sleeves"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Compression Sleeves</h3>
+                            <p>Improves circulation</p>
+                            <div class="price">₹250</div>
+                            <button class="btn add-to-cart" data-id="23" data-name="Compression Sleeves" data-price="250" data-image="images/compression-sleeves.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="24" data-name="Weight Belt" data-price="300" data-description="Durable weight belt providing lumbar support for heavy lifting." data-image="images/weight-belt.jpg">
+                        <img src="images/weight-belt.jpg" alt="Weight Belt"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Weight Belt</h3>
+                            <p>Support for heavy lifts</p>
+                            <div class="price">₹300</div>
+                            <button class="btn add-to-cart" data-id="24" data-name="Weight Belt" data-price="300" data-image="images/weight-belt.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="25" data-name="Arm Bands for Phone/Music" data-price="200" data-description="Secure arm band to hold your phone or music device during workouts." data-image="images/arm-bands.jpg">
+                        <span class="badge">20% Off</span>
+                        <img src="images/arm-bands.jpg" alt="Arm Bands for Phone/Music"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Arm Bands for Phone/Music</h3>
+                            <p>Secure phone holder</p>
+                            <div class="price">₹200</div>
+                            <button class="btn add-to-cart" data-id="25" data-name="Arm Bands for Phone/Music" data-price="200" data-image="images/arm-bands.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" data-id="26" data-name="Gym Bag/Backpack" data-price="450" data-description="Spacious gym bag with multiple compartments for all your gear." data-image="images/gym-bag.jpg">
+                        <img src="images/gym-bag.jpg" alt="Gym Bag/Backpack"> <!-- Add your local image here -->
+                        <div class="product-card-content">
+                            <h3>Gym Bag/Backpack</h3>
+                            <p>Spacious compartments</p>
+                            <div class="price">₹450</div>
+                            <button class="btn add-to-cart" data-id="26" data-name="Gym Bag/Backpack" data-price="450" data-image="images/gym-bag.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cart" class="product-section">
+            <div class="container">
+                <h2>Your Cart</h2>
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items"></tbody>
+                </table>
+                <div class="cart-total" id="cart-total">Total: ₹0</div>
+                <div class="order-form">
+                    <h3>Place Your Order</h3>
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <label for="address">Address</label>
+                    <textarea id="address" placeholder="Enter your shipping address" rows="4" required></textarea>
+                    <button class="btn" id="place-order">Place Order</button>
+                </div>
+                <div class="order-confirmation" id="order-confirmation">
+                    <h3>Order Placed Successfully!</h3>
+                    <p>Thank you for your purchase. You'll receive a confirmation email soon.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-us" class="product-section">
+            <div class="container">
+                <h2>About Us</h2>
+                <p>RDP Athletics is dedicated to revolutionizing fitness fashion with premium athletic wear designed for peak performance and ultimate comfort.</p>
+                <p>Our mission is to provide high-quality, affordable fitness apparel that empowers individuals to achieve their fitness goals. With a focus on innovation, we use advanced materials like moisture-wicking fabrics and ergonomic designs to enhance productivity and comfort.</p>
+                <p>We are committed to sustainability, using eco-friendly materials and ethical manufacturing practices. Join us in our journey to make fitness accessible to everyone.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="product-section">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="contact-form">
+                    <label for="contact-name">Name</label>
+                    <input type="text" id="contact-name" placeholder="Your Name" required>
+                    <label for="contact-email">Email</label>
+                    <input type="email" id="contact-email" placeholder="Your Email" required>
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" placeholder="Your Message" rows="6" required></textarea>
+                    <button class="btn">Send Message</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="profile" class="product-section">
+            <div class="container">
+                <h2>Your Profile</h2>
+                <div class="profile-info">
+                    <div class="user-icon"><i class="fas fa-user-circle"></i></div>
+                    <p><strong>Name:</strong> <span id="profile-name">John Doe</span></p>
+                    <p><strong>Email:</strong> <span id="profile-email">john@example.com</span></p>
+                    <p><strong>Member Since:</strong> January 2025</p>
+                    <p><strong>Orders Placed:</strong> 5</p>
+                    <button class="btn" id="edit-profile">Edit Profile</button>
+                    <div class="edit-form">
+                        <label for="edit-name">Name</label>
+                        <input type="text" id="edit-name" value="John Doe">
+                        <label for="edit-email">Email</label>
+                        <input type="email" id="edit-email" value="john@example.com">
+                        <button class="btn" id="save-profile">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews-section home-content">
+            <div class="container">
+                <h2>Customer Reviews</h2>
+                <div class="slider">
+                    <div class="slider-container" id="slider-container">
+                        <div class="review-card">
+                            <div class="user-icon"><i class="fas fa-user-circle"></i></div>
+                            <p>"Great quality clothes at affordable prices! Highly recommend."</p>
+                            <h4>Jane Smith</h4>
+                        </div>
+                        <div class="review-card">
+                            <div class="user-icon"><i class="fas fa-user-circle"></i></div>
+                            <p>"The compression shirts are fantastic for my workouts."</p>
+                            <h4>Mike Johnson</h4>
+                        </div>
+                        <div class="review-card">
+                            <div class="user-icon"><i class="fas fa-user-circle"></i></div>
+                            <p>"Comfortable and stylish leggings. Perfect for yoga."</p>
+                            <h4>Emily Davis</h4>
+                        </div>
+                        <div class="review-card">
+                            <div class="user-icon"><i class="fas fa-user-circle"></i></div>
+                            <p>"Excellent customer service and fast delivery."</p>
+                            <h4>Chris Brown</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button id="prev-btn">Previous</button>
+                    <button id="next-btn">Next</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="contact-icon">
+        <i class="fas fa-envelope"></i>
+        <div class="contact-menu" id="contact-menu">
+            <a href="https://instagram.com/rdpathletics" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://twitter.com/rdpathletics" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="mailto:support@rdpathletics.com"><i class="fas fa-envelope"></i> Email Us</a>
+        </div>
+    </div>
+
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close modal">&times;</button>
+            <img id="modal-image" src="" alt="">
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
+            <div class="price" id="modal-price"></div>
+            <p class="modal-sales">Special Sale: 20% Off This Week Only!</p>
+            <button class="btn add-to-cart" id="modal-add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://instagram.com/rdpathletics" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/rdpathletics" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:support@rdpathletics.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="#men">Men</a>
+                <a href="#women">Women</a>
+                <a href="#unisex-essentials">Unisex Essentials</a>
+                <a href="#cart">Cart</a>
+            </div>
+            <p>&copy; 2025 RDP Athletics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileBtn = document.querySelector('.mobile-nav-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        mobileBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+
+        // Contact Menu Toggle
+        const contactIcon = document.querySelector('.contact-icon');
+        const contactMenu = document.getElementById('contact-menu');
+        contactIcon.addEventListener('click', () => {
+            contactMenu.classList.toggle('active');
+        });
+
+        // Navigation and Section Toggle
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.desktop-nav a, .mobile-nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === targetId) {
+                        section.classList.add('active');
+                    }
+                });
+                const homeContents = document.querySelectorAll('.home-content');
+                if (targetId === 'home') {
+                    homeContents.forEach(el => el.classList.remove('hidden'));
+                } else {
+                    homeContents.forEach(el => el.classList.add('hidden'));
+                }
+                mobileNav.classList.remove('active');
+            });
+        });
+
+        // Cart Functionality
+        let cart = [];
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productId = e.target.dataset.id;
+                const productName = e.target.dataset.name;
+                const productPrice = parseInt(e.target.dataset.price);
+                const productImage = e.target.dataset.image;
+                const existingItem = cart.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ id: productId, name: productName, price: productPrice, quantity: 1, image: productImage });
+                }
+                updateCartUI();
+            });
+        });
+
+        function updateCartUI() {
+            const cartCount = document.querySelector('.cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+            cartCount.textContent = totalItems;
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                cartItems.innerHTML += `
+                    <tr>
+                        <td><img src="${item.image}" alt="${item.name}"> ${item.name}</td>
+                        <td>₹${item.price}</td>
+                        <td>${item.quantity}</td>
+                        <td>₹${item.price * item.quantity}</td>
+                    </tr>
+                `;
+            });
+            cartTotal.textContent = `Total: ₹${totalPrice}`;
+        }
+
+        // Product Modal
+        const modal = document.getElementById('product-modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalPrice = document.getElementById('modal-price');
+        const modalAddToCart = document.getElementById('modal-add-to-cart');
+        const closeBtn = document.querySelector('.close-btn');
+
+        document.querySelectorAll('.product-card img, .product-card h3').forEach(element => {
+            element.addEventListener('click', (e) => {
+                const card = e.target.closest('.product-card');
+                const productId = card.dataset.id;
+                const productName = card.dataset.name;
+                const productPrice = card.dataset.price;
+                const productDescription = card.dataset.description;
+                const productImage = card.dataset.image;
+
+                modalImage.src = productImage;
+                modalImage.alt = productName;
+                modalTitle.textContent = productName;
+                modalDescription.textContent = productDescription;
+                modalPrice.textContent = `₹${productPrice}`;
+                modalAddToCart.dataset.id = productId;
+                modalAddToCart.dataset.name = productName;
+                modalAddToCart.dataset.price = productPrice;
+                modalAddToCart.dataset.image = productImage;
+
+                modal.style.display = 'flex';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+        const products = [
+            { id: '1', name: 'Sleeveless Vest', price: 200, image: 'images/sleeveless-vest.jpg', category: 'Men' },
+            { id: '2', name: 'Dry-Fit T-Shirt', price: 250, image: 'images/dry-fit-t-shirt.jpg', category: 'Men' },
+            { id: '3', name: 'Compression Shirt', price: 300, image: 'images/compression-shirt.jpg', category: 'Men' },
+            { id: '4', name: 'Tank Top', price: 220, image: 'images/tank-top-men.jpg', category: 'Men' },
+            { id: '5', name: 'Hooded Gym Tee', price: 350, image: 'images/hooded-gym-tee.jpg', category: 'Men' },
+            { id: '6', name: 'Training Shorts', price: 280, image: 'images/training-shorts.jpg', category: 'Men' },
+            { id: '7', name: 'Joggers', price: 320, image: 'images/joggers-men.jpg', category: 'Men' },
+            { id: '8', name: 'Track Pants', price: 350, image: 'images/track-pants.jpg', category: 'Men' },
+            { id: '9', name: 'Compression Tights', price: 400, image: 'images/compression-tights.jpg', category: 'Men' },
+            { id: '10', name: '2-in-1 Shorts', price: 300, image: 'images/2-in-1-shorts.jpg', category: 'Men' },
+            { id: '11', name: 'Sports Bra', price: 200, image: 'images/sports-bra.jpg', category: 'Women' },
+            { id: '12', name: 'Tank Top', price: 220, image: 'images/tank-top-women.jpg', category: 'Women' },
+            { id: '13', name: 'Crop Top', price: 250, image: 'images/crop-top.jpg', category: 'Women' },
+            { id: '14', name: 'Dry-Fit T-Shirt', price: 280, image: 'images/dry-fit-t-shirt-women.jpg', category: 'Women' },
+            { id: '15', name: 'Gym Hoodie/Sweatshirt', price: 350, image: 'images/gym-hoodie-women.jpg', category: 'Women' },
+            { id: '16', name: 'High-Waist Leggings', price: 300, image: 'images/high-waist-leggings.jpg', category: 'Women' },
+            { id: '17', name: 'Yoga Pants', price: 280, image: 'images/yoga-pants.jpg', category: 'Women' },
+            { id: '18', name: 'Gym Shorts', price: 250, image: 'images/gym-shorts-women.jpg', category: 'Women' },
+            { id: '19', name: 'Joggers', price: 320, image: 'images/joggers-women.jpg', category: 'Women' },
+            { id: '20', name: 'Skorts', price: 300, image: 'images/skorts.jpg', category: 'Women' },
+            { id: '21', name: 'Gym Towel', price: 200, image: 'images/gym-towel.jpg', category: 'Unisex Essentials' },
+            { id: '22', name: 'Sweat-Proof Jacket', price: 450, image: 'images/sweat-proof-jacket.jpg', category: 'Unisex Essentials' },
+            { id: '23', name: 'Compression Sleeves', price: 250, image: 'images/compression-sleeves.jpg', category: 'Unisex Essentials' },
+            { id: '24', name: 'Weight Belt', price: 300, image: 'images/weight-belt.jpg', category: 'Unisex Essentials' },
+            { id: '25', name: 'Arm Bands for Phone/Music', price: 200, image: 'images/arm-bands.jpg', category: 'Unisex Essentials' },
+            { id: '26', name: 'Gym Bag/Backpack', price: 450, image: 'images/gym-bag.jpg', category: 'Unisex Essentials' }
+        ];
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            searchResults.innerHTML = '';
+            if (query) {
+                const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+                if (filteredProducts.length) {
+                    filteredProducts.forEach(product => {
+                        searchResults.innerHTML += `
+                            <div class="search-result-item" data-id="${product.id}">
+                                <img src="${product.image}" alt="${product.name}">
+                                <div>
+                                    <h3>${product.name}</h3>
+                                    <p>${product.category} • ₹${product.price}</p>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    searchResults.classList.add('active');
+                    document.querySelectorAll('.search-result-item').forEach(item => {
+                        item.addEventListener('click', () => {
+                            const productId = item.dataset.id;
+                            const product = products.find(p => p.id === productId);
+                            modalImage.src = product.image;
+                            modalImage.alt = product.name;
+                            modalTitle.textContent = product.name;
+                            modalDescription.textContent = document.querySelector(`.product-card[data-id="${product.id}"]`).dataset.description;
+                            modalPrice.textContent = `₹${product.price}`;
+                            modalAddToCart.dataset.id = productId;
+                            modalAddToCart.dataset.name = product.name;
+                            modalAddToCart.dataset.price = product.price;
+                            modalAddToCart.dataset.image = product.image;
+                            modal.style.display = 'flex';
+                            searchResults.classList.remove('active');
+                            searchInput.value = '';
+                        });
+                    });
+                } else {
+                    searchResults.innerHTML = '<p style="padding: 1rem;">No products found.</p>';
+                    searchResults.classList.add('active');
+                }
+            } else {
+                searchResults.classList.remove('active');
+            }
+        });
+
+        // Order Form
+        const placeOrderBtn = document.getElementById('place-order');
+        const orderConfirmation = document.getElementById('order-confirmation');
+        placeOrderBtn.addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            if (name && email && address && cart.length > 0) {
+                orderConfirmation.classList.add('active');
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('address').value = '';
+                cart = [];
+                updateCartUI();
+                setTimeout(() => {
+                    orderConfirmation.classList.remove('active');
+                }, 3000);
+            } else {
+                alert('Please fill in all fields and add items to the cart.');
+            }
+        });
+
+        // Slider for Reviews
+        const sliderContainer = document.getElementById('slider-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        let currentIndex = 0;
+        const slideWidth = 100; // percentage
+
+        function slideNext() {
+            currentIndex = (currentIndex + 1) % 4; // 4 reviews
+            sliderContainer.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+        }
+
+        function slidePrev() {
+            currentIndex = (currentIndex - 1 + 4) % 4;
+            sliderContainer.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+        }
+
+        nextBtn.addEventListener('click', slideNext);
+        prevBtn.addEventListener('click', slidePrev);
+
+        // Profile Edit
+        const editProfileBtn = document.getElementById('edit-profile');
+        const editForm = document.querySelector('.edit-form');
+        const saveProfileBtn = document.getElementById('save-profile');
+        const profileName = document.getElementById('profile-name');
+        const profileEmail = document.getElementById('profile-email');
+        const editName = document.getElementById('edit-name');
+        const editEmail = document.getElementById('edit-email');
+
+        editProfileBtn.addEventListener('click', () => {
+            editForm.classList.toggle('active');
+        });
+
+        saveProfileBtn.addEventListener('click', () => {
+            profileName.textContent = editName.value;
+            profileEmail.textContent = editEmail.value;
+            editForm.classList.remove('active');
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartUI();
+            document.querySelector('#home').classList.add('active');
+        });
+    </script>
+</body>
+</html>
